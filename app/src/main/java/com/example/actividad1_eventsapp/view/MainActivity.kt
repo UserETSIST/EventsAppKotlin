@@ -1,4 +1,4 @@
-package com.example.actividad1_eventsapp
+package com.example.actividad1_eventsapp.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

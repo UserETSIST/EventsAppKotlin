@@ -59,8 +59,16 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    // ConstraintLayout
+    implementation(libs.androidx.constraintlayout)
     // ViewModel
-
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    // LiveData
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    // Fragment
+    //implementation("androidx.fragment:fragment-ktx:1.3.2")
+    // Activity
+    //implementation("androidx.activity:activity-ktx:1.2.2")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
