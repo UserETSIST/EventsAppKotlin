@@ -1,0 +1,68 @@
+# Gradle files
+.gradle/
+build/
+
+# Local configuration file (sdk location, etc.)
+local.properties
+
+# IntelliJ/Android Studio project files
+.idea/
+*.iml
+*.iws
+
+# Keystore files (do not share your keystore with anyone)
+*.jks
+*.keystore
+
+# Log files
+*.log
+
+# Android Studio generated files
+captures/
+output.json
+
+# Build artifacts
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+
+# Generated files
+/captures/
+/gradle/
+/build/
+/out/
+
+# Kotlin files
+*.kotlin_metadata
+
+# Dependency directories
+/.idea/libraries/
+/.DS_Store
+
+# Jetpack Compose preview files
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+
+# Miscellaneous
+/.gradle/
+/.idea/
+
+
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
