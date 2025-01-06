@@ -20,7 +20,6 @@ import com.example.actividad1_eventsapp.viewmodel.EventViewModel
 fun HomeScreen(
     navController: NavController,
     eventViewModel: EventViewModel = viewModel()
-
 ) {
     Scaffold(
         topBar = {
@@ -71,15 +70,20 @@ fun HomeScreen(
             val events = eventViewModel.events.observeAsState(initial = emptyList())
             LazyColumn {
                 items(events.value) { event ->
+                    val isFavorite = eventViewModel.favoriteEvents.value?.contains(event) == true
                     EventCard(
                         id = event.id,
                         titulo = event.titulo,
                         fInicio = event.fInicio,
                         imagen = event.imagen,
                         descripcion = event.descripcion,
+                        isFavorite = isFavorite,
                         onClick = { id ->
-                            // Manejar clic en el evento, por ejemplo, navegar a detalles
+                            // Navegar a detalles del evento
                             navController.navigate("eventDetails/$id")
+                        },
+                        onFavoriteToggle = { favoriteId ->
+                            eventViewModel.addFavorite(favoriteId)
                         }
                     )
                 }

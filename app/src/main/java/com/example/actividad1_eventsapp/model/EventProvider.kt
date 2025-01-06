@@ -12,7 +12,7 @@ class EventProvider {
             fInicio = "2025-01-10",
             fFinal = "2025-01-12",
             descripcion = "Un festival de música con bandas locales e internacionales.",
-            imagen = "https://example.com/festival.jpg",
+            imagen = "https://via.placeholder.com/150",
             contacto = "123456789",
             noContacto = "987654321",
             emailCont = "contacto@festival.com",
@@ -29,7 +29,7 @@ class EventProvider {
             fInicio = "2025-02-01",
             fFinal = "2025-02-28",
             descripcion = "Exposición de arte contemporáneo con artistas nacionales.",
-            imagen = "https://example.com/arte.jpg",
+            imagen = "https://via.placeholder.com/150",
             contacto = "112233445",
             noContacto = "998877665",
             emailCont = "info@museo.com",
@@ -46,7 +46,7 @@ class EventProvider {
             fInicio = "2025-03-15",
             fFinal = "2025-03-16",
             descripcion = "Torneo para jugadores de todos los niveles. Inscripción gratuita.",
-            imagen = "https://example.com/ajedrez.jpg",
+            imagen = "https://via.placeholder.com/150",
             contacto = "334455667",
             noContacto = "776655443",
             emailCont = "info@clubdeportivo.com",
@@ -63,7 +63,7 @@ class EventProvider {
             fInicio = "2025-04-20",
             fFinal = "2025-04-25",
             descripcion = "Feria con escritores y editoriales reconocidas.",
-            imagen = "https://example.com/libro.jpg",
+            imagen = "https://via.placeholder.com/150",
             contacto = "998877665",
             noContacto = "334455667",
             emailCont = "info@ferialibro.com",
@@ -80,7 +80,7 @@ class EventProvider {
             fInicio = "2025-05-01",
             fFinal = "2025-05-01",
             descripcion = "Carrera de 10 km a beneficio de organizaciones locales.",
-            imagen = "https://example.com/carrera.jpg",
+            imagen = "https://via.placeholder.com/150",
             contacto = "556677889",
             noContacto = "889977665",
             emailCont = "info@carrerasolidaria.com",
@@ -93,5 +93,9 @@ class EventProvider {
 
     fun fetchEvents(): List<Event> {
         return events
+    }
+
+    fun getEventByID(id: String): Event? {
+        return events.find { it.id == id }
     }
 }

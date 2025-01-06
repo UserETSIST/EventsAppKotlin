@@ -1,10 +1,16 @@
 package com.example.actividad1_eventsapp.view.components
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -20,10 +26,24 @@ fun EventCard(
     id: String,
     titulo: String,
     fInicio: String,
-    imagen: String,
+    imagen: String?,
     descripcion: String,
-    onClick: (String) -> Unit
+    isFavorite: Boolean, // Estado externo que indica si el evento está en favoritos
+    onClick: (String) -> Unit,
+    onFavoriteToggle: (String) -> Unit // Acción para alternar el estado de favorito
 ) {
+    // Animación para el tamaño del botón
+    val scale by animateFloatAsState(
+        targetValue = if (isFavorite) 1.2f else 1f,
+        animationSpec = tween(durationMillis = 300)
+    )
+
+    // Animación para el color del botón
+    val starColor by animateColorAsState(
+        targetValue = if (isFavorite) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface,
+        animationSpec = tween(durationMillis = 300)
+    )
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -35,16 +55,16 @@ fun EventCard(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp)
+                .padding(8.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            // Imagen del evento utilizando AsyncImage
+            // Imagen del evento
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(imagen)
+                    .data(imagen ?: "https://via.placeholder.com/150")
                     .crossfade(true)
                     .build(),
-                placeholder = painterResource(R.drawable.ic_launcher_foreground), // Placeholder configurado
-                contentDescription = descripcion, // Usa el campo "descripcion" del modelo
+                contentDescription = descripcion,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .size(80.dp)
@@ -54,8 +74,8 @@ fun EventCard(
             // Información del evento
             Column(
                 modifier = Modifier
-                    .fillMaxHeight()
-                    .weight(1f),
+                    .weight(1f)
+                    .padding(end = 8.dp),
                 verticalArrangement = Arrangement.Center
             ) {
                 Text(
@@ -67,6 +87,19 @@ fun EventCard(
                 Text(
                     text = "Inicio: $fInicio",
                     style = MaterialTheme.typography.bodySmall,
+                )
+            }
+
+            // Botón de Favoritos
+            IconButton(
+                onClick = { onFavoriteToggle(id) }, // Alternar estado de favorito
+                modifier = Modifier.scale(scale)
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_star), // Reemplaza con tu recurso de estrella
+                    contentDescription = if (isFavorite) "Quitar de favoritos" else "Añadir a favoritos",
+                    tint = starColor,
+                    modifier = Modifier.size(24.dp)
                 )
             }
         }
