@@ -11,6 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -28,19 +29,19 @@ fun EventCard(
     fInicio: String,
     imagen: String?,
     descripcion: String,
-    isFavorite: Boolean, // Estado externo que indica si el evento está en favoritos
+    isFavorite: Boolean, // Recibe el estado de favorito dinámicamente
     onClick: (String) -> Unit,
-    onFavoriteToggle: (String) -> Unit // Acción para alternar el estado de favorito
+    onFavoriteToggle: (String) -> Unit // Callback para alternar favoritos
 ) {
     // Animación para el tamaño del botón
     val scale by animateFloatAsState(
-        targetValue = if (isFavorite) 1.2f else 1f,
+        targetValue = if (isFavorite) 1.3f else 1f, // Tamaño más grande al pulsar
         animationSpec = tween(durationMillis = 300)
     )
 
     // Animación para el color del botón
     val starColor by animateColorAsState(
-        targetValue = if (isFavorite) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface,
+        targetValue = if (isFavorite) Color.Yellow else MaterialTheme.colorScheme.onSurface, // Amarillo para favoritos
         animationSpec = tween(durationMillis = 300)
     )
 
@@ -96,7 +97,7 @@ fun EventCard(
                 modifier = Modifier.scale(scale)
             ) {
                 Icon(
-                    painter = painterResource(id = R.drawable.ic_star), // Reemplaza con tu recurso de estrella
+                    painter = painterResource(id = R.drawable.ic_star),
                     contentDescription = if (isFavorite) "Quitar de favoritos" else "Añadir a favoritos",
                     tint = starColor,
                     modifier = Modifier.size(24.dp)
@@ -105,3 +106,5 @@ fun EventCard(
         }
     }
 }
+
+
