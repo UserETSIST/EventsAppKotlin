@@ -9,7 +9,7 @@ import com.example.actividad1_eventsapp.navigation.Screen
 
 @Composable
 fun BottomNavigationBar(navController: NavController) {
-    val items = listOf(Screen.Home, Screen.Nuevo, Screen.Favoritos)
+    val items = listOf(Screen.Home, Screen.Search, Screen.Favoritos)
     NavigationBar {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route

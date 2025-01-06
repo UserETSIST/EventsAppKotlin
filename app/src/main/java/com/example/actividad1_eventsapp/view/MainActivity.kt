@@ -21,7 +21,7 @@ import com.example.actividad1_eventsapp.ui.theme.Actividad1_EventsAppTheme
 import com.example.actividad1_eventsapp.view.components.BottomNavigationBar
 import com.example.actividad1_eventsapp.view.screens.EventDetailScreen
 import com.example.actividad1_eventsapp.view.screens.FavoritosScreen
-import com.example.actividad1_eventsapp.view.screens.NuevoScreen
+import com.example.actividad1_eventsapp.view.screens.SearchScreen
 import com.example.actividad1_eventsapp.viewmodel.EventViewModel
 
 class MainActivity : ComponentActivity() {
@@ -47,7 +47,7 @@ fun AppNavHost(navController: NavHostController) {
     val eventViewModel: EventViewModel = viewModel()
     NavHost(navController = navController, startDestination = Screen.Home.route) {
         composable(Screen.Home.route) { HomeScreen(navController = navController, eventViewModel = eventViewModel) }
-        composable(Screen.Nuevo.route) { NuevoScreen(navController) }
+        composable(Screen.Search.route) { SearchScreen(navController = navController, eventViewModel = eventViewModel)}
         composable(Screen.Favoritos.route) { FavoritosScreen(navController = navController, eventViewModel = eventViewModel) }
 
         composable(
