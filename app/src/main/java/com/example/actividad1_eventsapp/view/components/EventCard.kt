@@ -29,19 +29,19 @@ fun EventCard(
     fInicio: String,
     imagen: String?,
     descripcion: String,
-    isFavorite: Boolean, // Recibe el estado de favorito dinámicamente
+    isFavorite: Boolean,
     onClick: (String) -> Unit,
-    onFavoriteToggle: (String) -> Unit // Callback para alternar favoritos
+    onFavoriteToggle: (String) -> Unit
 ) {
-    // Animación para el tamaño del botón
+    // Animación para el tamaño del botón de favoritos
     val scale by animateFloatAsState(
-        targetValue = if (isFavorite) 1.3f else 1f, // Tamaño más grande al pulsar
+        targetValue = if (isFavorite) 1.3f else 1f,
         animationSpec = tween(durationMillis = 300)
     )
 
-    // Animación para el color del botón
+    // Animación para el color del botón de favoritos
     val starColor by animateColorAsState(
-        targetValue = if (isFavorite) Color.Yellow else MaterialTheme.colorScheme.onSurface, // Amarillo para favoritos
+        targetValue = if (isFavorite) Color.Yellow else MaterialTheme.colorScheme.onSurface,
         animationSpec = tween(durationMillis = 300)
     )
 
@@ -49,8 +49,12 @@ fun EventCard(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp),
-        shape = RoundedCornerShape(8.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        shape = RoundedCornerShape(16.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.2f),
+            contentColor = Color.White // Forzar blanco para todos los textos por defecto
+        ),
         onClick = { onClick(id) }
     ) {
         Row(
@@ -82,18 +86,20 @@ fun EventCard(
                 Text(
                     text = titulo,
                     style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White // Forzar blanco para el título
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = "Inicio: $fInicio",
                     style = MaterialTheme.typography.bodySmall,
+                    color = Color.White.copy(alpha = 0.8f) // Blanco con opacidad
                 )
             }
 
             // Botón de Favoritos
             IconButton(
-                onClick = { onFavoriteToggle(id) }, // Alternar estado de favorito
+                onClick = { onFavoriteToggle(id) },
                 modifier = Modifier.scale(scale)
             ) {
                 Icon(
@@ -106,5 +112,3 @@ fun EventCard(
         }
     }
 }
-
-

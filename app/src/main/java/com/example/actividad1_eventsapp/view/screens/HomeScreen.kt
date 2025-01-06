@@ -43,14 +43,18 @@ fun HomeScreen(
                     Text(
                         text = "Eventos en tu ciudad",
                         style = MaterialTheme.typography.titleMedium,
-                        modifier = Modifier.fillMaxWidth(),
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
                         textAlign = androidx.compose.ui.text.style.TextAlign.Center
                     )
-                }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary
+                )
             )
-        }
+        },
+        containerColor = MaterialTheme.colorScheme.background
     ) { padding ->
         Column(
             modifier = Modifier
@@ -66,6 +70,7 @@ fun HomeScreen(
                 style = MaterialTheme.typography.titleSmall,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier.padding(top = 16.dp, bottom = 8.dp)
             )
 
@@ -77,6 +82,10 @@ fun HomeScreen(
                 items(categories) { category ->
                     Button(
                         onClick = { /* Filtro por categoría */ },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = MaterialTheme.colorScheme.secondary,
+                            contentColor = MaterialTheme.colorScheme.onSecondary
+                        ),
                         shape = MaterialTheme.shapes.small
                     ) {
                         Text(text = category)
@@ -84,11 +93,13 @@ fun HomeScreen(
                 }
             }
 
+            // Título: "Eventos destacados"
             Text(
                 text = "Eventos destacados",
                 style = MaterialTheme.typography.titleSmall,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier.padding(top = 16.dp, bottom = 8.dp)
             )
 
