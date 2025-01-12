@@ -103,14 +103,17 @@ fun AppNavHost(navController: NavHostController) {
         }
 
         composable(
-            route = "eventDetails/{id}",
-            arguments = listOf(navArgument("id") { type = NavType.StringType })
+            route = "eventDetails/{ID}",
+            arguments = listOf(navArgument("ID") { type = NavType.IntType })
         ) { backStackEntry ->
-            val eventId = backStackEntry.arguments?.getString("id") ?: ""
-            EventDetailScreen(
-                navController = navController,
-                id = eventId
-            )
+            val eventId = backStackEntry.arguments?.getInt("ID")
+            println("EVENTID: $eventId")
+            if (eventId != null) {
+                EventDetailScreen(
+                    navController = navController,
+                    id = eventId
+                )
+            }
         }
     }
 }

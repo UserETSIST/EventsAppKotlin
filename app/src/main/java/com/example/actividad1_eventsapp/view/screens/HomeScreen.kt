@@ -22,6 +22,7 @@ fun HomeScreen(
     navController: NavController,
     eventViewModel: EventViewModel = viewModel()
 ) {
+    println("HomeScreen: ViewModel Initialized")
     val batchSize = 4 // Número de eventos que se cargan en cada paso
     var visibleEvents by remember { mutableStateOf(listOf<com.example.actividad1_eventsapp.model.Event>()) }
 
@@ -108,17 +109,17 @@ fun HomeScreen(
                 itemsIndexed(visibleEvents) { index, event ->
                     val isFavorite = favoriteEvents.value.contains(event)
                     EventCard(
-                        id = event.id,
-                        titulo = event.titulo,
-                        fInicio = event.fInicio,
-                        imagen = event.imagen,
-                        descripcion = event.descripcion,
+                        id = event.ID.toString(),
+                        titulo = event.TITULO,
+                        fInicio = event.FINICIO,
+                        imagen = event.IMAGEN,
+                        descripcion = event.DESCRIPCION,
                         isFavorite = isFavorite,
                         onClick = { id ->
                             navController.navigate("eventDetails/$id")
                         },
                         onFavoriteToggle = { favoriteId ->
-                            eventViewModel.addFavorite(favoriteId)
+                            eventViewModel.addFavorite(favoriteId.toInt())
                         }
                     )
 

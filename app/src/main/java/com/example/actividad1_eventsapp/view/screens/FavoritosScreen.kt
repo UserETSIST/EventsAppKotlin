@@ -61,8 +61,8 @@ fun FavoritosScreen(
 
             // Filtrar eventos según el texto ingresado
             val filteredEvents = favoriteEvents.value.filter { event ->
-                event.titulo.contains(query.text, ignoreCase = true) ||
-                        event.descripcion.contains(query.text, ignoreCase = true)
+                event.TITULO.contains(query.text, ignoreCase = true) ||
+                        event.DESCRIPCION.contains(query.text, ignoreCase = true)
             }
 
             if (filteredEvents.isEmpty()) {
@@ -83,11 +83,11 @@ fun FavoritosScreen(
                 LazyColumn {
                     items(filteredEvents) { event ->
                         EventCard(
-                            id = event.id,
-                            titulo = event.titulo,
-                            fInicio = event.fInicio,
-                            imagen = event.imagen,
-                            descripcion = event.descripcion,
+                            id = event.ID.toString(),
+                            titulo = event.TITULO,
+                            fInicio = event.FINICIO,
+                            imagen = event.IMAGEN,
+                            descripcion = event.DESCRIPCION,
                             isFavorite = true,
                             onClick = { id ->
                                 // Navegar a los detalles del evento
@@ -95,7 +95,7 @@ fun FavoritosScreen(
                             },
                             onFavoriteToggle = { favoriteId ->
                                 // Eliminar de favoritos si se vuelve a pulsar
-                                eventViewModel.addFavorite(favoriteId)
+                                eventViewModel.addFavorite(favoriteId.toInt())
                             }
                         )
                     }

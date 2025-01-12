@@ -26,8 +26,8 @@ fun SearchScreen(
 
     // Filtrar eventos según el texto ingresado
     val filteredEvents = events.value.filter { event ->
-        event.titulo.contains(query.text, ignoreCase = true) ||
-                event.descripcion.contains(query.text, ignoreCase = true)
+        event.TITULO.contains(query.text, ignoreCase = true) ||
+                event.DESCRIPCION.contains(query.text, ignoreCase = true)
     }
 
     Scaffold(
@@ -68,17 +68,17 @@ fun SearchScreen(
                     items(filteredEvents) { event ->
                         val isFavorite = favoriteEvents.value.contains(event)
                         EventCard(
-                            id = event.id,
-                            titulo = event.titulo,
-                            fInicio = event.fInicio,
-                            imagen = event.imagen,
-                            descripcion = event.descripcion,
+                            id = event.ID.toString(),
+                            titulo = event.TITULO,
+                            fInicio = event.FINICIO,
+                            imagen = event.IMAGEN,
+                            descripcion = event.DESCRIPCION,
                             isFavorite = isFavorite,
                             onClick = { id ->
                                 navController.navigate("eventDetails/$id")
                             },
                             onFavoriteToggle = { favoriteId ->
-                                eventViewModel.addFavorite(favoriteId)
+                                eventViewModel.addFavorite(favoriteId.toInt())
                             }
                         )
                     }
