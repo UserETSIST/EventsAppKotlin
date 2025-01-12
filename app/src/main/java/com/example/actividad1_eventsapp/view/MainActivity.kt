@@ -21,6 +21,7 @@ import com.example.actividad1_eventsapp.R
 import com.example.actividad1_eventsapp.navigation.Screen
 import com.example.actividad1_eventsapp.ui.theme.Actividad1_EventsAppTheme
 import com.example.actividad1_eventsapp.view.components.BottomNavigationBar
+import com.example.actividad1_eventsapp.view.screens.AddReviewScreen
 import com.example.actividad1_eventsapp.view.screens.EventDetailScreen
 import com.example.actividad1_eventsapp.view.screens.FavoritosScreen
 import com.example.actividad1_eventsapp.view.screens.SearchScreen
@@ -112,6 +113,19 @@ fun AppNavHost(navController: NavHostController) {
                 EventDetailScreen(
                     navController = navController,
                     id = eventId
+                )
+            }
+        }
+
+        composable(
+            route = "addReviewScreen/{eventId}",
+            arguments = listOf(navArgument("eventId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val eventId = backStackEntry.arguments?.getInt("eventId")
+            if (eventId != null) {
+                AddReviewScreen(
+                    navController = navController,
+                    eventId = eventId
                 )
             }
         }

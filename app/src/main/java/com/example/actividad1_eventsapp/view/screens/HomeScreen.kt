@@ -65,34 +65,7 @@ fun HomeScreen(
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Sección: "Eventos por categoría"
-            Text(
-                text = "Eventos por categoría",
-                style = MaterialTheme.typography.titleSmall,
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onBackground,
-                modifier = Modifier.padding(top = 16.dp, bottom = 8.dp)
-            )
 
-            // LazyRow con botones de categorías
-            LazyRow(
-                modifier = Modifier.padding(bottom = 16.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                items(categories) { category ->
-                    Button(
-                        onClick = { /* Filtro por categoría */ },
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = MaterialTheme.colorScheme.secondary,
-                            contentColor = MaterialTheme.colorScheme.onSecondary
-                        ),
-                        shape = MaterialTheme.shapes.small
-                    ) {
-                        Text(text = category)
-                    }
-                }
-            }
 
             // Título: "Eventos destacados"
             Text(

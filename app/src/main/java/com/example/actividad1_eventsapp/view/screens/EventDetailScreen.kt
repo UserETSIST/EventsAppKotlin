@@ -19,7 +19,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil3.compose.rememberAsyncImagePainter
-import com.example.actividad1_eventsapp.model.EventProvider
 import com.example.actividad1_eventsapp.viewmodel.EventViewModel
 
 @Composable
@@ -142,6 +141,25 @@ fun EventDetailScreen(
                                 modifier = Modifier.padding(top = 4.dp)
                             )
                         }
+                    }
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+
+                    // Button to navigate to AddReviewScreen
+                    Button(
+                        onClick = {
+                            navController.navigate("addReviewScreen/$id")
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 32.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = MaterialTheme.colorScheme.primary,
+                            contentColor = MaterialTheme.colorScheme.onPrimary
+                        )
+                    ) {
+                        Text(text = "Añadir Reseña", style = MaterialTheme.typography.bodyMedium)
                     }
 
                     Spacer(modifier = Modifier.height(16.dp))
